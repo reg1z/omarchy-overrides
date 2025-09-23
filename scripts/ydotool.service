@@ -1,0 +1,16 @@
+[Unit]
+Description=Starts ydotoold service
+After=graphical-session.target
+
+[Service]
+Type=simple
+Restart=always
+ExecStartPre=/bin/mkdir -p /run/user/USER_ID_PLACEHOLDER/ydotoold
+ExecStartPre=/bin/chown USER_ID_PLACEHOLDER:USER_ID_PLACEHOLDER /run/user/USER_ID_PLACEHOLDER/ydotoold
+ExecStart=/usr/bin/ydotoold --socket-path=/run/user/USER_ID_PLACEHOLDER/ydotoold/.ydotoold_socket --socket-own=USER_ID_PLACEHOLDER:USER_ID_PLACEHOLDER
+ExecReload=/usr/bin/kill -HUP $MAINPID
+KillMode=process
+TimeoutSec=180
+
+[Install]
+WantedBy=default.target
