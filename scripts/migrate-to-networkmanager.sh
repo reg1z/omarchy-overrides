@@ -69,16 +69,9 @@ fi
 # Reload systemd daemon
 sudo systemctl daemon-reload
 
-# Backup omarchy-menu command
-cp -f $USER_HOME/.local/share/omarchy/bin/omarchy-menu $USER_HOME/.local/share/omarchy/bin/omarchy-menu.bak
-
-# Backup omarchy waybar configuration
-cp -f $USER_HOME/.config/waybar/config.jsonc $USER_HOME/.config/waybar/config.jsonc.bak
+# Backup omarchy-launch-wifi command
+cp -f "$(which omarchy-launch-wifi)" "$(which omarchy-launch-wifi).bak"
 
 # Replace instances of Impala/impala with nmtui for omarchy-menu command
-sed -i "s/Impala/nmtui/g" "$USER_HOME/.local/share/omarchy/bin/omarchy-menu"
-sed -i "s/impala/nmtui/g" "$USER_HOME/.local/share/omarchy/bin/omarchy-menu"
-
-# Replace instances of Impala/impala with nmtui for waybar configuration
-sed -i "s/Impala/nmtui/g" "$USER_HOME/.config/waybar/config.jsonc"
-sed -i "s/impala/nmtui/g" "$USER_HOME/.config/waybar/config.jsonc"
+sed -i "s/Impala/nmtui/g" "$(which omarchy-launch-wifi)"
+sed -i "s/impala/nmtui/g" "$(which omarchy-launch-wifi)"
