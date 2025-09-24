@@ -11,3 +11,4 @@ cp -f input.conf $HYPR_CONFIG/input.conf
 cp -f master-layout.conf $HYPR_CONFIG/master-layout.conf
 cp -f monitors.conf $HYPR_CONFIG/monitors.conf
 cp -f bindings-speechnote.conf $HYPR_CONFIG/bindings-speechnote.conf
+cp -f windowrules-overrides.conf $HYPR_CONFIG/windowrules-overrides.conf
