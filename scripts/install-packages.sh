@@ -8,6 +8,7 @@ packages=(
   "tmux"
 )
 
+sudo pacman -Syy --noconfirm
 sudo pacman -S --needed --noconfirm ${packages[@]}
 
 # Flathub Flatpaks
