@@ -21,6 +21,7 @@ flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flath
 
 # Install SpeechNote and its Nvidia Addon
 flatpak install --user -y net.mkiol.SpeechNote net.mkiol.SpeechNote.Addon.nvidia
+#flatpak install --user -y net.mkiol.SpeechNote.Addon.nvidia
 
 # Add user to necessary group (input)
 sudo usermod -aG input $CURRENT_USER
