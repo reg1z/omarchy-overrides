@@ -18,3 +18,7 @@ cp -f monitors.conf $HYPR_CONFIG/monitors.conf
 
 cp -f windows.conf $HYPR_CONFIG/windows.conf
 cp -f windowrules-overrides.conf $HYPR_CONFIG/windowrules-overrides.conf
+
+# scripts
+mkdir -p ~/.scripts
+cp -f scripts/hyprgamemode.sh ~/.scripts/hyprgamemode.sh
