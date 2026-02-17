@@ -6,6 +6,7 @@ packages=(
   "flatpak"
   "discord"
   "tmux"
+  "bc"
 )
 
 sudo pacman -Syy --noconfirm
