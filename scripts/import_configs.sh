@@ -18,7 +18,6 @@ cp -f master-layout.conf $HYPR_CONFIG/master-layout.conf
 cp -f monitors.conf $HYPR_CONFIG/monitors.conf
 
 cp -f windows.conf $HYPR_CONFIG/windows.conf
-cp -f windowrules-overrides.conf $HYPR_CONFIG/windowrules-overrides.conf
 cp -f autostart.conf $HYPR_CONFIG/autostart.conf
 cp -f envs.conf $HYPR_CONFIG/envs.conf
 cp -f looknfeel.conf $HYPR_CONFIG/looknfeel.conf
