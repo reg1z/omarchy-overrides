@@ -1,0 +1,31 @@
+{
+  "keyMappings": "map L nextTab\nmap H previousTab\nmap <c-d> scrollPageDown\nmap <c-u> scrollPageUp",
+  "searchEngines": "m: https://leta.mullvad.net/search?q=%s&engine=google Mullvad Leta | Google\nmb: https://leta.mullvad.net/search?q=%st&engine=brave Mullvad Leta | Brave\ng: https://www.google.com/search?q=%s Google\ngm: https://www.google.com/maps?q=%s Google Maps\nyt: https://www.youtube.com/results?search_query=%s Youtube\nb: https://search.brave.com/search?q=%s Brave Search\nb: https://www.bing.com/search?q=%s Bing\nd: https://duckduckgo.com/?q=%s DuckDuckGo\nq: https://www.qwant.com/?q=%s Qwant\nwp: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia\naw: https://wiki.archlinux.org/index.php?search=%s Arch Wiki\narch: https://archlinux.org/packages/?sort=&q=%s&maintainer=&flagged= Arch Official Repositories\naur: https://aur.archlinux.org/packages?O=0&K=%s Arch User Repositories\npip: https://pypi.org/search/?q=%s PyPI\ngh: https://github.com/search?q=%s&type=repositories GitHub Repositories\nnpm: https://www.npmjs.com/search?q=%s npm",
+  "settingsVersion": "2.3.1",
+  "exclusionRules": [
+    {
+      "passKeys": "",
+      "pattern": "https?://mail.google.com/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://10.10.10.101:8006/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://www.notion.so/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://app.affine.pro/*"
+    },
+    {
+      "passKeys": "",
+      "pattern": "https?://ssh.cloud.google.com"
+    },
+    {
+      "passKeys": "",
+      "pattern": "ssh.cloud.google.com"
+    }
+  ]
+}
