@@ -17,6 +17,9 @@ themes=(
   "ristretto"
   "rose-pine"
   "tokyo-night"
+  "vantablack"
+  "white"
+  "miasma"
 )
 
 for theme in "${themes[@]}"; do
