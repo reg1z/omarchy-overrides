@@ -1,0 +1,28 @@
+#!/bin/bash
+# mp4_to_gif.sh - Convert MP4 to high-quality optimized GIF using ffmpeg
+# Usage: ./mp4_to_gif.sh input.mp4 [output.gif] [width] [fps]
+
+INPUT="$1"
+OUTPUT="${2:-${INPUT%.mp4}.gif}"
+WIDTH="${3:-480}"
+FPS="${4:-15}"
+
+if [ -z "$INPUT" ]; then
+    echo "Usage: $0 input.mp4 [output.gif] [width] [fps]"
+    exit 1
+fi
+
+# Generate optimized palette first, then use it for the GIF
+# This two-pass approach produces significantly better quality
+
+ffmpeg -i "$INPUT" \
+    -vf "fps=${FPS},scale=${WIDTH}:-1:flags=lanczos,palettegen=max_colors=256:stats_mode=diff" \
+    -y /tmp/_palette.png
+
+ffmpeg -i "$INPUT" -i /tmp/_palette.png \
+    -lavfi "fps=${FPS},scale=${WIDTH}:-1:flags=lanczos [x]; [x][1:v] paletteuse=dither=floyd_steinberg:diff_mode=rectangle" \
+    -y "$OUTPUT"
+
+rm -f /tmp/_palette.png
+
+echo "Done: $OUTPUT ($(du -h "$OUTPUT" | cut -f1))"
