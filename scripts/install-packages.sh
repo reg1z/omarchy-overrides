@@ -7,6 +7,7 @@ packages=(
   "discord"
   "tmux"
   "bc"
+  "gazelle-tui"
 )
 
 sudo pacman -Syy --noconfirm

@@ -43,28 +43,21 @@ chmod 755 $HYPR_SCRIPTS/*.sh
 ###                  ###
 ########################
 
-
-########################
-######### tmux #########
-###                  ###
-###                  ###
-########################
-
+# tmux
 mkdir -p $TMUX_CONFIG
 cp -f tmux/tmux.conf $TMUX_CONFIG/tmux.conf
 
-###                  ###
-########################
-
-########################
-####### fcitx5 #########
-###                  ###
-
+# fcitx5
 mkdir -p $FCITX5_CONFIG
 cp -f fcitx5/spell.conf $FCITX5_CONFIG/spell.conf
 
-
-###                  ###
-########################
+# Waybar
+cp -f waybar/config.jsonc $USER_HOME/.config/waybar/config.jsonc
 
 echo "fin"
+
+# wait a couple seconds, reloading hyprland + waybar
+sleep 1
+hyprctl reload
+slepe 1
+killall waybar && waybar &
