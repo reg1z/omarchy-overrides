@@ -1,35 +1,32 @@
 #!/bin/bash
+# Import all configs
 
 USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
-
-HYPR_CONFIG="$USER_HOME/.config/hypr"
-HYPR_SCRIPTS="$HYPR_CONFIG/scripts"
-
-TMUX_CONFIG="$USER_HOME/.config/tmux"
-
-FCITX5_CONFIG="$USER_HOME/.config/fcitx5/conf"
-
 cd ..
 
 
 ########################
 ####### Hyprland #######
 ###                  ###
-cp -f input.conf $HYPR_CONFIG/input.conf
+HYPR_CFG="$USER_HOME/.config/hypr"
+HYPR_SCRIPTS="$HYPR_CFG/scripts"
 
-# cp -f bindings.conf $HYPR_CONFIG/bindings.conf
-cp -f bindings-overrides.conf $HYPR_CONFIG/bindings-overrides.conf
-cp -f bindings-submap-vm-passthru.conf $HYPR_CONFIG/bindings-submap-vm-passthru.conf
-cp -f bindings-speechnote.conf $HYPR_CONFIG/bindings-speechnote.conf
+cp -f input.conf $HYPR_CFG/input.conf
+cp -f bindings.conf $HYPR_CFG/bindings.conf
+cp -f bindings-submap-vm-passthru.conf $HYPR_CFG/bindings-submap-vm-passthru.conf
 
-cp -f master-layout.conf $HYPR_CONFIG/master-layout.conf
+### Deprecated
+# cp -f bindings-overrides.conf $HYPR_CFG/bindings-overrides.conf
+# cp -f bindings-speechnote.conf $HYPR_CFG/bindings-speechnote.conf
 
-cp -f monitors.conf $HYPR_CONFIG/monitors.conf
+cp -f master-layout.conf $HYPR_CFG/master-layout.conf
 
-cp -f windows.conf $HYPR_CONFIG/windows.conf
-cp -f autostart.conf $HYPR_CONFIG/autostart.conf
-cp -f envs.conf $HYPR_CONFIG/envs.conf
-cp -f looknfeel.conf $HYPR_CONFIG/looknfeel.conf
+cp -f monitors.conf $HYPR_CFG/monitors.conf
+
+cp -f windows.conf $HYPR_CFG/windows.conf
+cp -f autostart.conf $HYPR_CFG/autostart.conf
+cp -f envs.conf $HYPR_CFG/envs.conf
+cp -f looknfeel.conf $HYPR_CFG/looknfeel.conf
 
 # scripts
 mkdir -p $HYPR_SCRIPTS
@@ -41,18 +38,29 @@ cp -f scripts/hyprscripts/center-mfact-daemon.sh $HYPR_SCRIPTS/center-mfact-daem
 chmod 755 $HYPR_SCRIPTS/*.sh
 
 ###                  ###
+####### Hyprland #######
 ########################
 
+########################
+######## Other #########
+###                  ###
+
 # tmux
-mkdir -p $TMUX_CONFIG
-cp -f tmux/tmux.conf $TMUX_CONFIG/tmux.conf
+TMUX_CFG="$USER_HOME/.config/tmux"
+mkdir -p $TMUX_CFG
+cp -f tmux/tmux.conf $TMUX_CFG/tmux.conf
 
 # fcitx5
-mkdir -p $FCITX5_CONFIG
-cp -f fcitx5/spell.conf $FCITX5_CONFIG/spell.conf
+FCITX5_CFG="$USER_HOME/.config/fcitx5/conf"
+mkdir -p $FCITX5_CFG
+cp -f fcitx5/spell.conf $FCITX5_CFG/spell.conf
 
 # Waybar
 cp -f waybar/config.jsonc $USER_HOME/.config/waybar/config.jsonc
+
+###                  ###
+######## Other #########
+########################
 
 echo "fin"
 
