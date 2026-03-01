@@ -57,8 +57,6 @@ if [[ ! -f $OMARCHY_BIN/omarchy-launch-webapp.bak ]]; then
   mv $OMARCHY_BIN/omarchy-launch-webapp $OMARCHY_BIN/omarchy-launch-webapp.bak
 fi 
 
-chmod 755 $USER_HOME/repos/omarchy-overrides/firefox/omarchy-launch-webapp
-ln -s $FFOX_DOTS/omarchy-launch-webapp $OMARCHY_BIN/omarchy-launch-webapp
 
 # Set firefox as default browser
 xdg-settings set default-web-browser firefox.desktop
