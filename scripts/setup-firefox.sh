@@ -18,9 +18,9 @@ sudo chmod 644 /etc/firefox/policies/policies.json
 # Install firefox if not present
 yay -Sy --needed firefox
 
-#########################
-### Browser Profiles: ###
-
+############################
+##### Browser Profiles #####
+###                      ###
 
 # PWAs
 PROFILE="WebApps"
@@ -43,9 +43,9 @@ firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
 sleep 5
 cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
 
-###                   ###
-#########################
-
+###                      ###
+##### Browser Profiles #####
+############################
 
 # Replace omarchy-launch-webapp with ours (backing up the old)
 mv ~/.local/share/omarchy/bin/omarchy-launch-webapp ~/.local/share/omarchy/bin/omarchy-launch-webapp.bak
