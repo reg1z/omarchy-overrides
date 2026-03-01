@@ -19,7 +19,7 @@ cp -f bindings-submap-vm-passthru.conf $HYPR_CFG/bindings-submap-vm-passthru.con
 # cp -f bindings-overrides.conf $HYPR_CFG/bindings-overrides.conf
 # cp -f bindings-speechnote.conf $HYPR_CFG/bindings-speechnote.conf
 
-cp -f master-layout.conf $HYPR_CFG/master-layout.conf
+cp -f layout-master.conf $HYPR_CFG/layout-master.conf
 
 cp -f monitors.conf $HYPR_CFG/monitors.conf
 
@@ -67,5 +67,6 @@ echo "fin"
 # wait a couple seconds, reloading hyprland + waybar
 sleep 1
 hyprctl reload
-slepe 1
-killall waybar && waybar &
+sleep 1
+killall waybar
+waybar &
