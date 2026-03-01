@@ -5,21 +5,34 @@ OMARCHY_BIN=$USER_HOME/.local/share/omarchy/bin
 FFOX_DOTS="$USER_DOTS/firefox"
 FFOX_CFG="$USER_HOME/.mozilla/firefox"
 
+# Browser profile name
+PROFILE="WebApps"
+
+# If WebApps browser profile doesn't exist, set it up.
+if [[ ! -d "$FFOX_CFG/WebApps" ]]; then
+  echo -e "Setting up $PROFILE Profile...\n"
+  firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
+  sleep 5
+  cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
+  sleep 1
+fi
+
 if [[ ! -f $OMARCHY_BIN/omarchy-launch-webapp.bak ]]; then
   echo -e "\nBacking up native binary and symlinking our custom one..."
   mv -v $OMARCHY_BIN/omarchy-launch-webapp $OMARCHY_BIN/omarchy-launch-webapp.bak
   chmod 755 $USER_HOME/repos/omarchy-overrides/firefox/omarchy-launch-webapp
   ln -s -v $FFOX_DOTS/omarchy-launch-webapp $OMARCHY_BIN/omarchy-launch-webapp
+  cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/" # Ensure WebApp profile has correct styling
   echo -e "Custom binary linked!\n"
-elif [[ "$1" == "restore" ]]; then
-  echo -e "\nRestoring omarchy-launch-webapp..."
+elif [[ "$1" == "sever" ]]; then
+  echo -e "\nSevering symbolic link to omarchy-launch-webapp..."
   rm -v $OMARCHY_BIN/omarchy-launch-webapp
+  echo -e "Restoring omarchy-launch-webapp..."
   mv -v $OMARCHY_BIN/omarchy-launch-webapp.bak $OMARCHY_BIN/omarchy-launch-webapp
   echo -e "Native omarchy bin restored!\n"
 else
-  echo -e "\nBackup already present. No link necessary."
+  echo -e "\n$OMARCHY_BIN/omarchy-launch-webapp.bak present.\nRelink not attempted."
 fi
 
-# Ensure webapp profile has the correct styling
-cp -v -RTf "$FFOX_DOTS/templates/WebApps/" "$FFOX_CFG/WebApps/"
-exit 0
+sleep 2;
+echo -e "END: link-webapp-firefox.sh"

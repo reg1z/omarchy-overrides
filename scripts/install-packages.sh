@@ -10,8 +10,8 @@ packages=(
   "gazelle-tui"
 )
 
-sudo pacman -Syy --noconfirm
-sudo pacman -S --needed --noconfirm ${packages[@]}
+yay -Syy --noconfirm
+yay -S --needed --noconfirm ${packages[@]}
 
 # Flathub Flatpaks
 flatpaks=(
@@ -19,3 +19,5 @@ flatpaks=(
 )
 
 flatpak install -y ${flatpaks[@]}
+
+echo -e "END: install-packages.sh"

@@ -25,12 +25,6 @@ yay -Sy --needed firefox
 ###                      ###
 echo -e "Setting up Firefox Browser Profiles"
 
-# PWAs
-PROFILE="WebApps"
-echo -e "Setting up $PROFILE Profile...\n"
-firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
-sleep 5
-cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
 
 # Personal
 PROFILE="Personal"
@@ -38,6 +32,7 @@ echo -e "Setting up $PROFILE Profile...\n"
 firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
 sleep 5
 cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
+sleep 1
 
 # Work
 PROFILE="Work"
@@ -45,6 +40,7 @@ echo -e "Setting up $PROFILE Profile...\n"
 firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
 sleep 5
 cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
+sleep 1
 
 ###                      ###
 ##### Browser Profiles #####
@@ -53,4 +49,4 @@ cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
 # Set firefox as default browser
 xdg-settings set default-web-browser firefox.desktop
 
-echo "fin"
+echo "END: setup-firefox.sh"

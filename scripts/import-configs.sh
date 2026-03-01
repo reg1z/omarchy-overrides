@@ -69,7 +69,6 @@ cp -f $USER_DOTS/waybar/config.jsonc $USER_HOME/.config/waybar/config.jsonc
 ######## Other #########
 ########################
 
-echo "fin"
 
 # wait a couple seconds, reloading hyprland + waybar
 sleep 1
@@ -77,3 +76,6 @@ hyprctl reload
 sleep 1
 killall waybar
 waybar > /dev/null 2>&1 &
+
+echo "Environment reloaded."
+echo -e "END: import-configs.sh"

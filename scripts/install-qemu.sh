@@ -106,3 +106,5 @@ gum format -- "
 - Refer to Arch Wiki for advanced virtualization configurations
 
 "
+
+echo -e "END: install-qemu.sh"

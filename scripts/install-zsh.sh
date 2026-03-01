@@ -27,3 +27,5 @@ else
 fi
 
 echo "==> Done! Log out and back in (or run 'zsh') to start using your new shell."
+
+echo -e "END: install-zsh.sh"

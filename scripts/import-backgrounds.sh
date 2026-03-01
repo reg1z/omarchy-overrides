@@ -30,7 +30,7 @@ BACKGROUNDS=$USER_DOTS/backgrounds
 
 # If adding "sever" as the first argument,
 # unlink backgrounds.
-if [[ "$1" == "sever"  ]]; then
+if [[ "$1" == "remove"  ]]; then
 
   for theme in "${themes[@]}"; do
     for i in 00 01 02 03 04 05 06 07 08 09; do
@@ -52,3 +52,5 @@ else
   done
 
 fi
+
+echo -e "END: import-backgrounds.sh $1"

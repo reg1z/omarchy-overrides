@@ -87,12 +87,6 @@ link() {
 	ln -s -v $HYPR_DOTS/envs.conf $HYPR_LOCAL/envs.conf
 	ln -s -v $HYPR_DOTS/looknfeel.conf $HYPR_LOCAL/looknfeel.conf
 
-  # Hyprland Scripts
-	ln -s -v $HYPR_SCRIPTS/hyprgamemode.sh $HYPR_LOCAL_SCRIPTS/hyprgamemode.sh # Decorations Toggle
-	ln -s -v $HYPR_SCRIPTS/delta-resize.sh $HYPR_LOCAL_SCRIPTS/delta-resize.sh # Calculates resize factor
-	ln -s -v $HYPR_SCRIPTS/orientation-cycle.sh $HYPR_LOCAL_SCRIPTS/orientation-cycle.sh # Master Layout orientation cycle
-	ln -s -v $HYPR_SCRIPTS/master-roll.sh $HYPR_LOCAL_SCRIPTS/master-roll.sh # Roll to next window with correct mfact for master center orientation
-	ln -s -v $HYPR_SCRIPTS/center-mfact-daemon.sh $HYPR_LOCAL_SCRIPTS/center-mfact-daemon.sh # Daemon. Applies proper mfact in master-center layout orientation
 
   # tmux
 	ln -s -v $USER_DOTS/tmux/tmux.conf $TMUX_CFG/tmux.conf
@@ -102,11 +96,37 @@ link() {
 
   # Waybar
 	ln -s -v $USER_DOTS/waybar/config.jsonc $WAYBAR_CFG/config.jsonc
+
+  #####################################
+  ### EXEMPT FROM SEVERING & BACKUP ###
+
+  # Hyprland Scripts
+  rm $HYPR_LOCAL_SCRIPTS/hyprgamemode.sh
+	ln -s -v $HYPR_SCRIPTS/hyprgamemode.sh $HYPR_LOCAL_SCRIPTS/hyprgamemode.sh # Decorations Toggle
+  #
+  rm $HYPR_LOCAL_SCRIPTS/delta-resize.sh
+	ln -s -v $HYPR_SCRIPTS/delta-resize.sh $HYPR_LOCAL_SCRIPTS/delta-resize.sh # Calculates resize factor
+  #
+  rm $HYPR_LOCAL_SCRIPTS/orientation-cycle.sh
+	ln -s -v $HYPR_SCRIPTS/orientation-cycle.sh $HYPR_LOCAL_SCRIPTS/orientation-cycle.sh # Master Layout orientation cycle
+  #
+  rm $HYPR_LOCAL_SCRIPTS/master-roll.sh
+	ln -s -v $HYPR_SCRIPTS/master-roll.sh $HYPR_LOCAL_SCRIPTS/master-roll.sh # Roll to next window with correct mfact for master center orientation
+  #
+  rm $HYPR_LOCAL_SCRIPTS/center-mfact-daemon.sh
+	ln -s -v $HYPR_SCRIPTS/center-mfact-daemon.sh $HYPR_LOCAL_SCRIPTS/center-mfact-daemon.sh # Daemon. Applies proper mfact in master-center layout orientation
+
+  # omarchy-theme-sync
+  ./link-theme-sync-config.sh
+
+  ### EXEMPT FROM SEVERING & BACKUP ###
+  #####################################
 }
 
 sever() {
   echo -e "\nSevering links..."
   # Hyprland Configs
+  # (Does not include our personal imported scripts)
   rm -v $HYPR_LOCAL/input.conf
   rm -v $HYPR_LOCAL/bindings.conf
   rm -v $HYPR_LOCAL/bindings-submap-vm-passthru.conf
@@ -117,16 +137,6 @@ sever() {
   rm -v $HYPR_LOCAL/autostart.conf
   rm -v $HYPR_LOCAL/envs.conf
   rm -v $HYPR_LOCAL/looknfeel.conf
-
-  # We don't need to worry about unlinking these really.
-  # Maybe one day.
-  #
-  # Hyprland Scripts
-  # rm -v $HYPR_LOCAL_SCRIPTS/hyprgamemode.sh
-  # rm -v $HYPR_LOCAL_SCRIPTS/delta-resize.sh
-  # rm -v $HYPR_LOCAL_SCRIPTS/orientation-cycle.sh
-  # rm -v $HYPR_LOCAL_SCRIPTS/master-roll.sh
-  # rm -v $HYPR_LOCAL_SCRIPTS/center-mfact-daemon.sh
 
   # tmux
   rm -v $TMUX_CFG/tmux.conf
@@ -178,5 +188,6 @@ fi
 
 reload_env;
 echo -e "\nEnvironment Reloaded.\n"
-exit 0
+sleep 3;
 
+echo -e "END: link-configs.sh $1"
