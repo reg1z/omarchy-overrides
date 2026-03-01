@@ -6,8 +6,10 @@
 # profiles.
 
 USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
+USER_DOTS=$USER_HOME/repos/omarchy-overrides
+FFOX_DOTS="$USER_DOTS/firefox"
 FFOX_CFG="$USER_HOME/.mozilla/firefox"
-FFOX_DOTS="../firefox"
+OMARCHY_BIN=$USER_HOME/.local/share/omarchy/bin
 
 # Import policies .json (enforces ublock origin, disabled telemetry, etc. system-wide)
 sudo mkdir -p /etc/firefox/policies
@@ -21,24 +23,25 @@ yay -Sy --needed firefox
 ############################
 ##### Browser Profiles #####
 ###                      ###
+echo -e "Setting up Firefox Browser Profiles"
 
 # PWAs
 PROFILE="WebApps"
-echo "Setting up $PROFILE Profile...\n"
+echo -e "Setting up $PROFILE Profile...\n"
 firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
 sleep 5
 cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
 
 # Personal
 PROFILE="Personal"
-echo "Setting up $PROFILE Profile...\n"
+echo -e "Setting up $PROFILE Profile...\n"
 firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
 sleep 5
 cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
 
 # Work
 PROFILE="Work"
-echo "Setting up $PROFILE Profile...\n"
+echo -e "Setting up $PROFILE Profile...\n"
 firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
 sleep 5
 cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
@@ -47,10 +50,15 @@ cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
 ##### Browser Profiles #####
 ############################
 
-# Replace omarchy-launch-webapp with ours (backing up the old)
-mv ~/.local/share/omarchy/bin/omarchy-launch-webapp ~/.local/share/omarchy/bin/omarchy-launch-webapp.bak
-cp -f $FFOX_DOTS/omarchy-launch-webapp.sh ~/.local/share/omarchy/bin/omarchy-launch-webapp
-sudo chmod 755 ~/.local/share/omarchy/bin/omarchy-launch-webapp
+# Replace omarchy-launch-webapp with ours (symlink new, backup old)
+
+# If backup not present, take a backup
+if [[ ! -f $OMARCHY_BIN/omarchy-launch-webapp.bak ]]; then
+  mv $OMARCHY_BIN/omarchy-launch-webapp $OMARCHY_BIN/omarchy-launch-webapp.bak
+fi 
+
+chmod 755 $USER_HOME/repos/omarchy-overrides/firefox/omarchy-launch-webapp
+ln -s $FFOX_DOTS/omarchy-launch-webapp $OMARCHY_BIN/omarchy-launch-webapp
 
 # Set firefox as default browser
 xdg-settings set default-web-browser firefox.desktop
