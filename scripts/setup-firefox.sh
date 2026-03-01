@@ -50,14 +50,6 @@ cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
 ##### Browser Profiles #####
 ############################
 
-# Replace omarchy-launch-webapp with ours (symlink new, backup old)
-
-# If backup not present, take a backup
-if [[ ! -f $OMARCHY_BIN/omarchy-launch-webapp.bak ]]; then
-  mv $OMARCHY_BIN/omarchy-launch-webapp $OMARCHY_BIN/omarchy-launch-webapp.bak
-fi 
-
-
 # Set firefox as default browser
 xdg-settings set default-web-browser firefox.desktop
 
