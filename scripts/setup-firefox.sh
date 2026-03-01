@@ -21,19 +21,26 @@ yay -Sy --needed firefox
 #########################
 ### Browser Profiles: ###
 
+
 # PWAs
 PROFILE="WebApps"
-firefox CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
+echo "Setting up $PROFILE Profile...\n"
+firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
+sleep 5
 cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
 
 # Personal
 PROFILE="Personal"
-firefox -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
+echo "Setting up $PROFILE Profile...\n"
+firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
+sleep 5
 cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
 
 # Work
 PROFILE="Work"
-firefox -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
+echo "Setting up $PROFILE Profile...\n"
+firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
+sleep 5
 cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
 
 ###                   ###
