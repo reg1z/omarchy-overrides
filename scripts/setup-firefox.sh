@@ -6,7 +6,7 @@
 # profiles.
 
 USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
-FFOX_CFG="$USER_HOME/.mozilla/firefox/"
+FFOX_CFG="$USER_HOME/.mozilla/firefox"
 FFOX_DOTS="../firefox"
 
 # Import policies .json (enforces ublock origin, disabled telemetry, etc. system-wide)
