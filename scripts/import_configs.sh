@@ -69,4 +69,4 @@ sleep 1
 hyprctl reload
 sleep 1
 killall waybar
-waybar &
+waybar > /dev/null 2>&1 &
