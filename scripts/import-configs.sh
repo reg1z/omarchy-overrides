@@ -8,33 +8,40 @@ cd ..
 ########################
 ####### Hyprland #######
 ###                  ###
+
+# Dotfiles
+USER_DOTS="$USER_HOME/repos/omarchy-overrides"
+HYPR_DOTS="$USER_DOTS/hypr"
+
+# Local
 HYPR_CFG="$USER_HOME/.config/hypr"
 HYPR_SCRIPTS="$HYPR_CFG/scripts"
 
-cp -f input.conf $HYPR_CFG/input.conf
-cp -f bindings.conf $HYPR_CFG/bindings.conf
-cp -f bindings-submap-vm-passthru.conf $HYPR_CFG/bindings-submap-vm-passthru.conf
+cp -f $HYPR_DOTS/input.conf $HYPR_CFG/input.conf
+cp -f $HYPR_DOTS/bindings.conf $HYPR_CFG/bindings.conf
+cp -f $HYPR_DOTS/bindings-submap-vm-passthru.conf $HYPR_CFG/bindings-submap-vm-passthru.conf
 
 ### Deprecated
 # cp -f bindings-overrides.conf $HYPR_CFG/bindings-overrides.conf
 # cp -f bindings-speechnote.conf $HYPR_CFG/bindings-speechnote.conf
 
-cp -f layout-master.conf $HYPR_CFG/layout-master.conf
+cp -f $HYPR_DOTS/layout-master.conf $HYPR_CFG/layout-master.conf
+cp -f $HYPR_DOTS/layout-dwindle.conf $HYPR_CFG/layout-dwindle.conf
 
-cp -f monitors.conf $HYPR_CFG/monitors.conf
+cp -f $HYPR_DOTS/monitors.conf $HYPR_CFG/monitors.conf
 
-cp -f windows.conf $HYPR_CFG/windows.conf
-cp -f autostart.conf $HYPR_CFG/autostart.conf
-cp -f envs.conf $HYPR_CFG/envs.conf
-cp -f looknfeel.conf $HYPR_CFG/looknfeel.conf
+cp -f $HYPR_DOTS/windows.conf $HYPR_CFG/windows.conf
+cp -f $HYPR_DOTS/autostart.conf $HYPR_CFG/autostart.conf
+cp -f $HYPR_DOTS/envs.conf $HYPR_CFG/envs.conf
+cp -f $HYPR_DOTS/looknfeel.conf $HYPR_CFG/looknfeel.conf
 
 # scripts
 mkdir -p $HYPR_SCRIPTS
-cp -f scripts/hyprscripts/hyprgamemode.sh $HYPR_SCRIPTS/hyprgamemode.sh
-cp -f scripts/hyprscripts/delta-resize.sh $HYPR_SCRIPTS/delta-resize.sh
-cp -f scripts/hyprscripts/orientation-cycle.sh $HYPR_SCRIPTS/orientation-cycle.sh
-cp -f scripts/hyprscripts/master-roll.sh $HYPR_SCRIPTS/master-roll.sh
-cp -f scripts/hyprscripts/center-mfact-daemon.sh $HYPR_SCRIPTS/center-mfact-daemon.sh
+cp -f $USER_DOTS/scripts/hyprscripts/hyprgamemode.sh $HYPR_SCRIPTS/hyprgamemode.sh
+cp -f $USER_DOTS/scripts/hyprscripts/delta-resize.sh $HYPR_SCRIPTS/delta-resize.sh
+cp -f $USER_DOTS/scripts/hyprscripts/orientation-cycle.sh $HYPR_SCRIPTS/orientation-cycle.sh
+cp -f $USER_DOTS/scripts/hyprscripts/master-roll.sh $HYPR_SCRIPTS/master-roll.sh
+cp -f $USER_DOTS/scripts/hyprscripts/center-mfact-daemon.sh $HYPR_SCRIPTS/center-mfact-daemon.sh
 chmod 755 $HYPR_SCRIPTS/*.sh
 
 ###                  ###
@@ -48,15 +55,15 @@ chmod 755 $HYPR_SCRIPTS/*.sh
 # tmux
 TMUX_CFG="$USER_HOME/.config/tmux"
 mkdir -p $TMUX_CFG
-cp -f tmux/tmux.conf $TMUX_CFG/tmux.conf
+cp -f $USER_DOTS/tmux/tmux.conf $TMUX_CFG/tmux.conf
 
 # fcitx5
 FCITX5_CFG="$USER_HOME/.config/fcitx5/conf"
 mkdir -p $FCITX5_CFG
-cp -f fcitx5/spell.conf $FCITX5_CFG/spell.conf
+cp -f $USER_DOTS/fcitx5/spell.conf $FCITX5_CFG/spell.conf
 
 # Waybar
-cp -f waybar/config.jsonc $USER_HOME/.config/waybar/config.jsonc
+cp -f $USER_DOTS/waybar/config.jsonc $USER_HOME/.config/waybar/config.jsonc
 
 ###                  ###
 ######## Other #########
