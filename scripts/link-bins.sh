@@ -15,4 +15,4 @@ for f in "$USER_BINS"/*; do
   ln -s -v "$USER_BINS"/"$file" "$LOCAL_BIN"/"$file"
 done
 
-echo "END: import-bins.sh"
+echo "END: link-bins.sh"
