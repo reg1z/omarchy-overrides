@@ -68,10 +68,3 @@ fi
 
 # Reload systemd daemon
 sudo systemctl daemon-reload
-
-# Backup omarchy-launch-wifi command
-cp -f "$(which omarchy-launch-wifi)" "$(which omarchy-launch-wifi).bak"
-
-# Replace instances of Impala/impala with nmtui for omarchy-menu command
-sed -i "s/Impala/nmtui/g" "$(which omarchy-launch-wifi)"
-sed -i "s/impala/nmtui/g" "$(which omarchy-launch-wifi)"
