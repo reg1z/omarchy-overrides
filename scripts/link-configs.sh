@@ -117,7 +117,10 @@ link() {
 	ln -s -v $HYPR_SCRIPTS/center-mfact-daemon.sh $HYPR_LOCAL_SCRIPTS/center-mfact-daemon.sh # Daemon. Applies proper mfact in master-center layout orientation
 
   # omarchy-theme-sync
-  ./link-theme-sync-config.sh
+  $USER_DOTS/scripts/link-theme-sync-config.sh
+
+  # link user bins
+  $USER_DOTS/scripts/link-bins.sh
 
 
   ### EXEMPT FROM SEVERING & BACKUP ###

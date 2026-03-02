@@ -4,7 +4,6 @@
 USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
 cd ..
 
-
 ########################
 ####### Hyprland #######
 ###                  ###

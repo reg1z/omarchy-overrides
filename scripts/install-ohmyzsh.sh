@@ -1,14 +1,14 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 set -euo pipefail
+
+USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
+USER_DOTS="$USER_HOME/repos/omarchy-overrides"
 
 # Install zsh + Oh My Zsh on Arch Linux with vi-mode plugin
 # Run as your normal user (uses sudo for pacman/chsh)
 
 echo "==> Installing zsh..."
-sudo pacman -S --needed --noconfirm zsh
-
-echo "==> Setting zsh as default shell..."
-sudo chsh -s "$(command -v zsh)" "$USER"
+yay -S --needed --noconfirm zsh
 
 echo "==> Installing Oh My Zsh..."
 # RUNZSH=no  — don't launch zsh immediately after install

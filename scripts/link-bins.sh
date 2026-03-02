@@ -1,5 +1,4 @@
 #!/bin/bash
-# 
 
 USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
 USER_DOTS="$USER_HOME/repos/omarchy-overrides"

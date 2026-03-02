@@ -151,7 +151,13 @@ while IFS= read -r item <&3 ; do
   esac
 done 3<<< "$items"
 
-echo "Importing system configs..."
-gum spin --spinner dot --title "Please don't touch anything..." -- $SCRIPTS/link-configs.sh link
+if gum confirm "Wanna symlink / re-link the configs?"; then
+  echo "hell ye"
+  echo "Importing system configs..."
+  gum spin --spinner dot --title "Please don't touch anything..." -- $SCRIPTS/link-configs.sh link
+else
+  echo "nice"
+fi
 
+exit 0
 
