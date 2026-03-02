@@ -119,6 +119,18 @@ link() {
   # omarchy-theme-sync
   ./link-theme-sync-config.sh
 
+  # ghostty
+  GHOSTTY_CFG="$USER_HOME/.config/ghostty"
+  #
+  # Keep default config backed up
+  if [[ ! -f "$GHOSTTY_CFG/config.bak" ]]; then
+    echo "Backing up ghostty config."
+    mv -v "$GHOSTTY_CFG/config" "$GHOSTTY_CFG/config.bak"
+  fi
+  #
+  rm -v "$GHOSTTY_CFG/config"
+  ln -s -v "$USER_DOTS/ghostty/config" "$GHOSTTY_CFG/config"
+
   ### EXEMPT FROM SEVERING & BACKUP ###
   #####################################
 }

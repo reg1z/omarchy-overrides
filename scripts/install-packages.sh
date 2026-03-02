@@ -5,9 +5,10 @@
 packages=(
   "flatpak"
   "discord"
-  "tmux"
+  "bitwarden"
+  "proton-vpn-gtk-app"
+  "proton-vpn-cli"
   "bc"
-  "gazelle-tui"
 )
 
 yay -Syy --noconfirm

@@ -68,3 +68,7 @@ fi
 
 # Reload systemd daemon
 sudo systemctl daemon-reload
+echo -e "systemd daemon reloaded."
+
+
+echo -e "END: networkmanager-migrate.sh"
