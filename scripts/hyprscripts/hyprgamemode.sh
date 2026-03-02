@@ -6,6 +6,7 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
         keyword animation borderangle,0; \
         keyword decoration:shadow:enabled 0;\
         keyword decoration:blur:enabled 0;\
+        keyword decoration:blur:special false;\
 	      keyword decoration:fullscreen_opacity 1.0;\
 	      keyword decoration:inactive_opacity 1.0;\
 	      keyword decoration:active_opacity 1.0;\
@@ -13,12 +14,18 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
         keyword general:gaps_in 0;\
         keyword general:gaps_out 0;\
         keyword general:border_size 1;\
-        keyword decoration:rounding 0"
+        keyword decoration:rounding 0;\
+        keyword decoration:dim_special 1"
+    
+    hyprctl keyword 'windowrule[opaque]:enable true'
+    hyprctl keyword 'windowrule[clear]:enable false'
     hyprctl notify 1 5000 "rgb(40a02b)" "Gamemode [ON]"
     exit
 else
     hyprctl notify 1 5000 "rgb(d20f39)" "Gamemode [OFF]"
     hyprctl reload
+    # hyprctl keyword 'windowrule[opaque]:enable false'
+    # hyprctl keyword 'windowrule[clear]:enable true'
     exit 0
 fi
 exit 1
