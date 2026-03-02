@@ -15,12 +15,19 @@ USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
 USER_DOTS="$USER_HOME/repos/omarchy-overrides"
 
 # Unlink
-$USER_DOTS/scripts/omarchy-unlink.sh;
+echo "Preparing environment for update:"
+gum spin --spinner monkey --title "Decoupling Overrides..." -- $USER_DOTS/scripts/omarchy-unlink.sh;
+echo "Overrides Decoupled! Running omarchy-update"
 
 # Update
 omarchy-update;
-echo -e "\n omarchy-update finished. Waiting a moment to let system settle..."
-sleep 3;
+echo "omarchy-update finished!"
+gum spin --spinner monkey --title "Waiting a moment to let the system settle..." -- sleep 3;
 
 # Relink
-$USER_DOTS/scripts/omarchy-relink.sh;
+
+echo "Laying overrides..."
+gum spin --spinner monkey --title "Recoupling..." -- $USER_DOTS/scripts/omarchy-relink.sh;
+
+echo "Success!"
+exit 0
