@@ -1,6 +1,20 @@
 # Omarchy Overrides
 
-Atm it's mostly hyprland config overrides:
-- Keybinds
-- Added a passthru mode toggle for using modifier keys in virtual machine software (vbox/vmware/etc.)
-- Switched tiling layout from dwindle to master
+Opinionated take on an opinionated distro. Idempotent and easily uncoupled (hopefully).
+
+An attempt at heavy customization that's easily updated and doesn't risk breaking the core system.
+
+Always a work-in-progress.
+
+## Setup
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/reg1z/omarchy-overrides/refs/heads/main/scripts/get-dots.sh | bash
+```
+
+Clones the repo and launches the setup script.
+
+## Updating
+When updating the system, it's best to use `my-omarchy-update`.
+
+`my-omarchy-update` decouples all overrides -- temporarily severing all symlinks, restores changes made to the internal omarchy git repo (`~/.local/share/omarchy`) -- then runs `omarchy-update`, before re-applying overrides. Unless prompted in the terminal for input, it's best to leave things alone during this process.
