@@ -17,8 +17,8 @@ for d in "$USER_DOTS/omarchy-theme-sync"/*/; do
     file=$(basename "$f")
     if [ "$file" == "dir" ] || [ "$file" == "profignore" ]; then
       echo "Linking $file..."
-      rm -v "$THEMESYNC_CFG"/"$folder"/"$file"
-      ln -s -v "$d"/"$file" "$THEMESYNC_CFG"/"$folder"/"$file"
+      rm "$THEMESYNC_CFG"/"$folder"/"$file"
+      ln -s "$d"/"$file" "$THEMESYNC_CFG"/"$folder"/"$file"
     fi
   done
 done

@@ -1,6 +1,7 @@
 #!/bin/bash
 # Installs my kanata keyboard layout.
 # Clones into tmp and then cleans up files.
+exit 0
 
 cd /tmp
 yay -S --needed --noconfirm rust 

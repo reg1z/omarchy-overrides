@@ -45,7 +45,7 @@ backup() {
     echo $name
     if [[ "$name" == *.bak ]]; then
       echo "Backup already present. Ending execution."
-      exit 1
+      return 1
     fi
   done
 
@@ -119,23 +119,16 @@ link() {
   # omarchy-theme-sync
   ./link-theme-sync-config.sh
 
-  # ghostty
-  GHOSTTY_CFG="$USER_HOME/.config/ghostty"
-  #
-  # Keep default config backed up
-  if [[ ! -f "$GHOSTTY_CFG/config.bak" ]]; then
-    echo "Backing up ghostty config."
-    mv -v "$GHOSTTY_CFG/config" "$GHOSTTY_CFG/config.bak"
-  fi
-  #
-  rm -v "$GHOSTTY_CFG/config"
-  ln -s -v "$USER_DOTS/ghostty/config" "$GHOSTTY_CFG/config"
 
   ### EXEMPT FROM SEVERING & BACKUP ###
   #####################################
 }
 
 sever() {
+  if [[ ! -f "$HYPR_LOCAL/input.conf.bak" ]]; then
+    echo "No existing backups! Ending severance."
+    exit 0
+  fi
   echo -e "\nSevering links..."
   # Hyprland Configs
   # (Does not include our personal imported scripts)

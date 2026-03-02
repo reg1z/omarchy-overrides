@@ -25,22 +25,29 @@ yay -Sy --needed firefox
 ###                      ###
 echo -e "Setting up Firefox Browser Profiles"
 
-
 # Personal
 PROFILE="Personal"
-echo -e "Setting up $PROFILE Profile...\n"
-firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
-sleep 5
-cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
-sleep 1
+if [[ -d $FFOX_CFG/$PROFILE ]]; then
+  echo "$PROFILE profile already present! Skipping..."
+else
+  echo -e "Setting up $PROFILE Profile...\n"
+  firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
+  sleep 5
+  cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
+  sleep 1
+fi
 
 # Work
 PROFILE="Work"
-echo -e "Setting up $PROFILE Profile...\n"
-firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
-sleep 5
-cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
-sleep 1
+if [[ -d $FFOX_CFG/$PROFILE ]]; then
+  echo "$PROFILE profile already present! Skipping..."
+else
+  echo -e "Setting up $PROFILE Profile...\n"
+  firefox -no-remote -CreateProfile "$PROFILE $FFOX_CFG/$PROFILE"
+  sleep 5
+  cp -RTf "$FFOX_DOTS/templates/$PROFILE/" "$FFOX_CFG/$PROFILE/"
+  sleep 1
+fi
 
 ###                      ###
 ##### Browser Profiles #####
