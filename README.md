@@ -17,4 +17,6 @@ Clones the repo and launches the setup script.
 ## Updating
 When updating the system, it's best to use `my-omarchy-update`.
 
+![demo](https://raw.githubusercontent.com/reg1z/media-assets/refs/heads/main/omarchy-overrides/update-demo.gif)
+
 `my-omarchy-update` decouples all overrides -- temporarily severing all symlinks, restores changes made to the internal omarchy git repo (`~/.local/share/omarchy`) -- then runs `omarchy-update`, before re-applying overrides. Unless prompted in the terminal for input, it's best to leave things alone during this process.
