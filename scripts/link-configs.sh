@@ -122,6 +122,11 @@ link() {
   # link user bins
   $USER_DOTS/scripts/link-bins.sh
 
+  # neovim
+  rm $USER_HOME/.config/nvim/lua/config/keymaps.lua
+  ln -s -v $USER_DOTS/nvim/lua/config/keymaps.lua $USER_HOME/.config/nvim/lua/config/keymaps.lua
+  rm $USER_HOME/.config/nvim/lua/config/options.lua
+  ln -s -v $USER_DOTS/nvim/lua/config/options.lua $USER_HOME/.config/nvim/lua/config/options.lua
 
   ### EXEMPT FROM SEVERING & BACKUP ###
   #####################################
