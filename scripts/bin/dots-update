@@ -1,0 +1,13 @@
+#/!bin/bash
+read -p "Update omarchy-overrides dotfiles? (y/n) " -n 1 -r
+echo ""
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    cd $HOME/repos/omarchy-overrides
+    git pull
+    echo "Pull complete"
+else
+    echo "Dotfiles not updated"
+fi
+
+echo "END: dots-update"

@@ -1,0 +1,60 @@
+#!/bin/bash
+# 1. Sever symlinks & remove
+#    conflicting files
+# 
+# 2. Restore system defaults in
+#    ~/.local/share/omarchy
+#       (omarchy source) 
+# 
+# 3. Update system packages
+#    - `omarchy-update`
+#    - `flatpak update`
+#    - `npm update -g`
+# 
+# 4. Update omarchy-overrides dotfiles
+#    - `git pull`
+# 
+# 5. Backup system defaults
+#
+# 6. Reestablish symlinks & reimport
+#    previously conflicting files
+
+USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
+USER_DOTS="$USER_HOME/repos/omarchy-overrides"
+
+SPINNER="pulse"
+SPINNER_PULL="globe"
+
+# Unlink
+echo "Preparing environment for update:"
+gum spin --spinner "$SPINNER" --title "Decoupling Overrides..." -- $USER_DOTS/scripts/omarchy-unlink.sh;
+echo "Overrides Decoupled!"
+
+# Update Omarchy
+echo -e "\nRunning omarchy-update."
+omarchy-update;
+echo "omarchy-update finished!"
+
+# Update flatpaks
+echo -e "\nRunning flatpak update."
+flatpak update;
+echo "flatpak update finished!"
+
+# Update global npm packages
+echo -e "\nRunning npm-update."
+npm-update;
+echo "npm-update finished!"
+
+# Update Dotfiles
+cd $USER_DOTS
+gum spin --spinner "$SPINNER_PULL" --title "Pulling latest dotfiles..." -- git pull;
+echo "Dotfiles are up-to-date."
+
+# Relink
+gum spin --spinner "$SPINNER" --title "Waiting a moment to let the system settle..." -- sleep 3;
+
+echo "Laying overrides..."
+gum spin --spinner "$SPINNER" --title "Recoupling..." -- $USER_DOTS/scripts/omarchy-relink.sh;
+
+echo "END: sever-and-update"
+exit 0

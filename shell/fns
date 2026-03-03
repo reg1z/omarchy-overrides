@@ -1,0 +1,12 @@
+# Relinks custom executables
+linkbin () {
+  local USER_BINS=$HOME/repos/omarchy-overrides/scripts/bin
+  local LOCAL_BIN=$HOME/.local/bin
+
+  for f in "$USER_BINS"/*; do
+    local file=$(basename "$f")
+    echo "Linking $file..."
+    rm -v "$LOCAL_BIN"/"$file"
+    ln -s -v "$USER_BINS"/"$file" "$LOCAL_BIN"/"$file"
+  done
+}

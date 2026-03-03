@@ -9,6 +9,7 @@ packages=(
   "proton-vpn-gtk-app"
   "proton-vpn-cli"
   "bc"
+  "rust"
 )
 
 yay -Syy --noconfirm

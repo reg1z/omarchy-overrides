@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Checking for outdated global packages..."
+npm outdated -g
+
+read -p "Update all outdated packages? (y/n) " -n 1 -r
+echo ""
+
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+    npm update -g
+    echo "✓ All packages updated!"
+else
+    echo "✓ No packages updated."
+fi
+
+echo "END: npm-update"

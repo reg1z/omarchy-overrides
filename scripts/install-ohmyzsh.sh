@@ -7,7 +7,6 @@ USER_DOTS="$USER_HOME/repos/omarchy-overrides"
 # Install zsh + Oh My Zsh on Arch Linux with vi-mode plugin
 # Run as your normal user (uses sudo for pacman/chsh)
 
-echo "==> Installing zsh..."
 yay -S --needed --noconfirm zsh
 
 echo "==> Installing Oh My Zsh..."
