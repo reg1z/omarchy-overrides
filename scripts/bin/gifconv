@@ -15,14 +15,21 @@ fi
 # Generate optimized palette first, then use it for the GIF
 # This two-pass approach produces significantly better quality
 
+notify-send "‍Converting with ffmpeg" "This may take a few moments" -u normal -t 5000
 ffmpeg -i "$INPUT" \
     -vf "fps=${FPS},scale=${WIDTH}:-1:flags=lanczos,palettegen=max_colors=256:stats_mode=diff" \
     -y /tmp/_palette.png
 
 ffmpeg -i "$INPUT" -i /tmp/_palette.png \
     -lavfi "fps=${FPS},scale=${WIDTH}:-1:flags=lanczos [x]; [x][1:v] paletteuse=dither=floyd_steinberg:diff_mode=rectangle" \
-    -y "$OUTPUT"
+    -y /tmp/_preprocessed.gif
+
+# Optimize with gifsicle
+notify-send "Optimizing with gifsicle" "This may take a few moments" -u normal -t 5000
+gifsicle -O2 --lossy=75 --colors=128 "/tmp/_preprocessed.gif" -o "$OUTPUT"
 
 rm -f /tmp/_palette.png
+rm -f /tmp/_preprocessed.gif
 
+notify-send "Finished!" "$OUTPUT" -u normal -t 5000
 echo "Done: $OUTPUT ($(du -h "$OUTPUT" | cut -f1))"

@@ -1,0 +1,47 @@
+#!/bin/bash
+set -euo pipefail
+
+USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
+OUTPUT_DIR="$USER_HOME/Videos"
+
+# Snapshot existing matching files before starting
+before_list=$(ls -1 "$OUTPUT_DIR"/screenrecording-????-??-??_??-??-??.mp4 2>/dev/null || true)
+
+# Trigger silent video recording
+omarchy-cmd-screenrecord
+
+# Wait until the recorder process is gone
+while pgrep -f "gpu-screen-record" >/dev/null; do
+  sleep 1
+  echo -e "\n\nrecorder still active\n\n"
+done
+
+# Get matching files after recording
+after_list=$(ls -1 "$OUTPUT_DIR"/screenrecording-????-??-??_??-??-??.mp4 2>/dev/null || true)
+
+# Compute "new" files = after − before
+new_file=$(
+  comm -13 \
+    <(printf '%s\n' $before_list | sort) \
+    <(printf '%s\n' $after_list | sort) \
+  | tail -n 1
+)
+
+if [[ -z "${new_file:-}" ]]; then
+  echo "Error: gpu-screen-recorder finished but no new recording was created in $OUTPUT_DIR" >&2
+  exit 1
+fi
+
+latest_file="$new_file"
+echo "Processing: $latest_file"
+
+# Convert to gif
+name="${latest_file##*/}"
+output_file="${name%.*}"
+"$USER_HOME/.local/bin/gifconv" \
+  "$latest_file" \
+  "$USER_HOME/Pictures/$output_file.gif" \
+  850 15
+
+
+# rm -v "$latest_file"
