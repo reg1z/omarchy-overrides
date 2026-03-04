@@ -128,7 +128,7 @@ while IFS= read -r item <&3 ; do
       ;;
     'Alternative-Shell')
       echo -e "\nLet's pick ur sh3ll"
-      $USER_HOME/repos/omarchy-overrides/scripts/bin/omarchy-choose-shell
+      $USER_DOTS/scripts/bin/omarchy-choose-shell
       ;;
   esac
 done 3<<< "$items"
