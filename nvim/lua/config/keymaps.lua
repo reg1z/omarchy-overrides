@@ -5,8 +5,8 @@
 local map = vim.keymap.set
 
 -- Keep cursor centered while navigating
-map("n", "j", "jzz", { noremap = true })
-map("n", "k", "kzz", { noremap = true })
+map("n", "j", "gjzz", { noremap = true })
+map("n", "k", "gkzz", { noremap = true })
 map("n", "G", "Gzz", { noremap = true })
 map("n", "gg", "ggzz", { noremap = true })
 map("n", "<C-d>", "<C-d>zz", { noremap = true })

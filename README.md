@@ -16,8 +16,8 @@ curl -fsSL https://raw.githubusercontent.com/reg1z/omarchy-overrides/refs/heads/
 Clones the repo and launches the setup script.
 
 ## Updating
-When updating the system, it's best to use `my-omarchy-update`.
+When updating the system, it's best to use `sever-and-update`.
 
 ![demo](https://raw.githubusercontent.com/reg1z/media-assets/refs/heads/main/omarchy-overrides/update-demo.gif)
 
-`my-omarchy-update` decouples all overrides -- temporarily severing all symlinks, restores changes made to the internal omarchy git repo (`~/.local/share/omarchy`) -- then runs `omarchy-update`, before re-applying overrides. Unless prompted in the terminal for input, it's best to leave things alone during this process.
+`sever-and-update` decouples all overrides -- temporarily severing all symlinks, restores changes made to the internal omarchy git repo (`~/.local/share/omarchy`) -- then runs `omarchy-update` and other misc updates (flatpak/npm/pulling latest changes from this repo) before re-applying overrides. Unless prompted in the terminal for input, it's best to leave things alone during this process.
