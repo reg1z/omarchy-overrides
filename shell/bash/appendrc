@@ -1,4 +1,4 @@
-###### APPENDED (omarchy-overrides)-######
+# ----- appended ----- omarchy-overrides -----
 
 # bash settings
 set -o vi # vi mode

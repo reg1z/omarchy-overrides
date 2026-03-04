@@ -8,6 +8,7 @@ USER_BINS="$USER_DOTS/scripts/bin"
 LOCAL_BIN="$USER_HOME/.local/bin"
 
 SPINNER="pulse"
+SPINNER_EMPHASIS="moon"
 
 if gum confirm "Wanna install these dotfiles? They're pretty cool 😎"; then
   echo "hell ye"
@@ -20,7 +21,8 @@ gum spin --spinner "$SPINNER" --title "lets goooooo !" -- sleep 1
 echo "let's gooooo"
 
 # Update repos
-gum spin --spinner "$SPINNER" --title "Updating repos..." -- yay -Syy --noconfirm
+echo "Updating repos..."
+yay -Syy --noconfirm
 
 ##############################
 ######### Functions ##########
@@ -68,41 +70,6 @@ install_kanata() {
     gum spin --spinner "$SPINNER" --title "Installing Kanata & Enthium..." -- $SCRIPTS/laptop_kanata_enthium.sh
   else
     echo "aight"
-  fi
-}
-
-choose_shell() {
-  GHOSTTY_CFG="$USER_HOME/.config/ghostty"
-  # Keep default config backed up
-  if [[ ! -f "$GHOSTTY_CFG/config.bak" ]]; then
-    echo "Backing up ghostty config."
-    mv -v "$GHOSTTY_CFG/config" "$GHOSTTY_CFG/config.bak"
-  fi
-
-  if gum confirm "Wanna use zsh, NERD? If not, we'll jus go w/ bash"; then
-    echo "cool"
-    gum spin --spinner pulse --title "Installing zsh and symlinking ghostty config..." -- yay -S --noconfirm --needed zsh
-    rm "$GHOSTTY_CFG/config"
-    ln -s "$USER_DOTS/ghostty/zsh/config" "$GHOSTTY_CFG/config"
-    gum spin --spinner "$SPINNER" --title "Setting up zsh..." zsh -c "sleep 2; exit" # init .zshrc
-
-    if [[ -f "$USER_HOME/.zshrc" ]]; then
-      cat "$USER_DOTS/shell/zsh/appendrc" >> "$USER_HOME/.zshrc"
-    fi
-
-    echo "Shell SET."
-  else
-    echo "aight"
-    echo "jus gon go w/ bash, ya feel"
-    rm "$GHOSTTY_CFG/config"
-    ln -s "$USER_DOTS/ghostty/bash/config" "$GHOSTTY_CFG/config"
-    gum spin --spinner "$SPINNER" --title "Setting up zsh..." zsh -c "sleep 2; exit" # init .zshrc
-
-    if [[ -f "$USER_HOME/.bashrc" ]]; then
-      cat "$USER_DOTS/shell/bash/appendrc" >> "$USER_HOME/.bashrc"
-    fi
-
-    echo "Shell SET."
   fi
 }
 
@@ -161,7 +128,7 @@ while IFS= read -r item <&3 ; do
       ;;
     'Alternative-Shell')
       echo -e "\nLet's pick ur sh3ll"
-      choose_shell
+      $USER_HOME/repos/omarchy-overrides/scripts/bin/omarchy-choose-shell
       ;;
   esac
 done 3<<< "$items"
@@ -169,7 +136,7 @@ done 3<<< "$items"
 if gum confirm "Wanna symlink / re-link the configs?"; then
   echo "hell ye"
   echo "Importing system configs..."
-  gum spin --spinner "$SPINNER" --title "Please don't touch anything..." -- $SCRIPTS/link-configs.sh link
+  gum spin --spinner "$SPINNER_EMPHASIS" --title "Please don't touch anything..." -- $SCRIPTS/link-configs.sh link
 else
   echo "nice"
 fi

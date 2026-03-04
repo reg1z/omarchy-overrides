@@ -1,4 +1,5 @@
-###### APPENDED (omarchy-overrides)-######
+
+# ----- appended ----- omarchy-overrides -----
 
 # zsh settings
 bindkey -v # vi mode
@@ -13,5 +14,5 @@ export BINS=$HOME/.local/bin
 
 # sourcing
 source $DOTS/shell/aliases
-source $DOTS/shell/fns # functions
+source $DOTS/shell/fns
 
