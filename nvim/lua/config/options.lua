@@ -5,3 +5,4 @@
 vim.opt.scrolloff = 0
 vim.opt.autoread = true
 vim.opt.relativenumber = true
+vim.opt.wrap = true

@@ -21,8 +21,9 @@ gum spin --spinner "$SPINNER" --title "lets goooooo !" -- sleep 1
 echo "let's gooooo"
 
 # Update repos
-echo "Updating repos..."
-yay -Syy --noconfirm
+echo "Updating repos and installing dependencies..."
+yay -Syy
+yay -S --needed --noconfirm jq bc
 
 ##############################
 ######### Functions ##########
@@ -73,6 +74,14 @@ install_kanata() {
   fi
 }
 
+install_opencode() {
+  $SCRIPTS/install-opencode.sh
+}
+
+install_zellij() {
+  $SCRIPTS/install-zellij.sh
+}
+
 ###                        ###
 ######### Functions ##########
 ##############################
@@ -101,6 +110,8 @@ items=$(gum choose --no-limit --header "Wadya want?" \
   'Firefox' \
   'omarchy-theme-sync' \
   'kanata-enthium' \
+  'OpenCode' \
+  'Zellij' \
   'Alternative-Shell')
 
 while IFS= read -r item <&3 ; do
@@ -125,6 +136,14 @@ while IFS= read -r item <&3 ; do
     'kanata-enthium')
       echo -e "\nInstalling kanata keyboard daemon with enthium glove80-style layout"
       install_kanata
+      ;;
+    'OpenCode')
+      echo -e "\nInstalling OpenCode..."
+      install_opencode
+      ;;
+    'Zellij')
+      echo -e "\nInstalling Zellij..."
+      install_zellij
       ;;
     'Alternative-Shell')
       echo -e "\nLet's pick ur sh3ll"
