@@ -23,7 +23,7 @@ fi
 if ! grep -F '# SUNSHINE OFFICIAL REPO ---' /etc/pacman.conf || ! grep -F '[lizardbyte]' /etc/pacman.conf ]; then
   echo -e "\nAdding sunshine official repo (lizardbyte) to /etc/pacman.conf\n"
 
-  sudo cat >> /etc/pacman.conf << 'EOF'
+sudo cat >> /etc/pacman.conf << 'EOF'
 
 # SUNSHINE OFFICIAL REPO ---
 [lizardbyte]
@@ -34,6 +34,6 @@ EOF
 fi
 
 pacman -Syy
-pacman -Si sunshine
+pacman -S lizardbyte/sunshine
 
 exit 0
