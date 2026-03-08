@@ -1,0 +1,29 @@
+#!/bin/bash
+# Cycles window gaps between several standard options.
+
+gaps=$(hyprctl getoption general:gaps_out -j | jq -r '.custom' | awk '{print $1}')
+borders=$(hyprctl getoption general:border_size -j | jq -r '.int')
+ms=100
+
+if [ $gaps == "0" ]; then
+  hyprctl keyword general:gaps_out 30
+  hyprctl keyword general:gaps_in 15
+elif [[ $gaps == "30" ]]; then
+  hyprctl keyword general:gaps_out 20
+  hyprctl keyword general:gaps_in 10
+elif [[ $gaps == "20" ]]; then
+  hyprctl keyword general:gaps_out 10
+  hyprctl keyword general:gaps_in 5
+elif [[ $gaps == "10" ]]; then
+  hyprctl keyword general:gaps_out 8
+  hyprctl keyword general:gaps_in 4
+elif [[ $gaps == "8" ]]; then
+  hyprctl keyword general:gaps_out 6
+  hyprctl keyword general:gaps_in 3
+elif [[ $gaps == "6" ]]; then
+  hyprctl keyword general:gaps_out 4
+  hyprctl keyword general:gaps_in 2
+else
+  hyprctl keyword general:gaps_out 0
+  hyprctl keyword general:gaps_in 0
+fi

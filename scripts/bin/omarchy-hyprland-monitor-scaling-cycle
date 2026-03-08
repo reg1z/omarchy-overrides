@@ -19,7 +19,7 @@ case "$CURRENT_INT" in
 15) NEW_SCALE=1.6 ;;
 16) NEW_SCALE=2 ;;
 20) NEW_SCALE=3 ;;
-*) NEW_SCALE=0.3 ;;
+*) NEW_SCALE=0.8 ;;
 esac
 
 hyprctl keyword misc:disable_scale_notification true
