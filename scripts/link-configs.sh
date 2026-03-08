@@ -79,8 +79,7 @@ link() {
 	ln -s -v $HYPR_DOTS/input.conf $HYPR_LOCAL/input.conf
 	ln -s -v $HYPR_DOTS/bindings.conf $HYPR_LOCAL/bindings.conf
 	ln -s -v $HYPR_DOTS/bindings-submap-vm-passthru.conf $HYPR_LOCAL/bindings-submap-vm-passthru.conf
-	ln -s -v $HYPR_DOTS/layout-master.conf $HYPR_LOCAL/layout-master.conf
-	ln -s -v $HYPR_DOTS/layout-dwindle.conf $HYPR_LOCAL/layout-dwindle.conf
+	ln -s -v $HYPR_DOTS/layouts.conf $HYPR_LOCAL/layouts.conf
 	ln -s -v $HYPR_DOTS/monitors.conf $HYPR_LOCAL/monitors.conf
 	ln -s -v $HYPR_DOTS/windows.conf $HYPR_LOCAL/windows.conf
 	ln -s -v $HYPR_DOTS/autostart.conf $HYPR_LOCAL/autostart.conf
