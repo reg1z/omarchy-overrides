@@ -4,12 +4,13 @@
 # Official Arch Repositories
 packages=(
   "flatpak"
-  "discord"
   "bitwarden"
   "proton-vpn-gtk-app"
   "proton-vpn-cli"
   "bc"
   "rust"
+  "gifsicle"
+  "ffmpeg"
 )
 
 yay -Syy --noconfirm
@@ -18,6 +19,7 @@ yay -S --needed --noconfirm ${packages[@]}
 # Flathub Flatpaks
 flatpaks=(
   "app.grayjay.Grayjay"
+  "dev.vencord.Vesktop"
 )
 
 flatpak install -y ${flatpaks[@]}
