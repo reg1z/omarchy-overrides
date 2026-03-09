@@ -45,10 +45,10 @@ echo -e "\nRunning npm-update."
 npm-update;
 echo "npm-update finished!"
 
-# Update Dotfiles
-cd $USER_DOTS
-gum spin --spinner "$SPINNER_PULL" --title "Pulling latest dotfiles..." -- git pull;
-echo "Dotfiles are up-to-date."
+# # Update Dotfiles
+# cd $USER_DOTS
+# gum spin --spinner "$SPINNER_PULL" --title "Pulling latest dotfiles..." -- git pull;
+# echo "Dotfiles are up-to-date."
 
 # Relink
 gum spin --spinner "$SPINNER" --title "Waiting a moment to let the system settle..." -- sleep 3;
