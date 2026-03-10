@@ -1,0 +1,13 @@
+#!/bin/bash
+# Install syncthing as a user service.
+
+USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
+CURRENT_USER=$(whoami)
+
+yay -Syy
+yay -S --needed --noconfirm syncthing
+
+mkdir -p $USER_HOME/.config/systemd/user
+cp $USER_HOME/repos/omarchy-overrides/syncthing/syncthing.service $USER_HOME/.config/systemd/user
+
+systemctl --user enable --now syncthing.service
