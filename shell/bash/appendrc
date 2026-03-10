@@ -5,7 +5,7 @@ set -o vi # vi mode
 
 # system envs
 export SSH_AUTH_SOCK=$HOME/.bitwarden-ssh-agent.sock
-export PATH="$HOME/.cache/.bun/bin:$PATH$PATH:$HOME/.cargo/bin:$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$HOME/.cache/.bun/bin:$PATH:$HOME/.cargo/bin:"
 
 
 # convenience envs

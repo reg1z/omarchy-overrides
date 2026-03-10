@@ -6,7 +6,7 @@ bindkey -v # vi mode
 
 # system envs
 export SSH_AUTH_SOCK=$HOME/.bitwarden-ssh-agent.sock
-export PATH="$HOME/.cache/.bun/bin:$PATH$PATH:$HOME/.cargo/bin:$HOME/.local/bin"
+export PATH="$HOME/.local/bin:$HOME/.cache/.bun/bin:$PATH:$HOME/.cargo/bin:"
 export $OLLAMA_HOST="127.0.0.1:11434"
 
 # convenience envs
