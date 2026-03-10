@@ -1,0 +1,13 @@
+#!/bin/bash
+# Toggle border roundedness
+
+round=$(hyprctl getoption decoration:rounding -j | jq -r '.int')
+ms=500
+
+if [[ $round == "0" ]]; then
+  hyprctl keyword decoration:rounding 10
+  notify-send "10px window rounding" -t "$ms"
+else
+  hyprctl keyword decoration:rounding 0
+  notify-send "0px window rounding" -t "$ms"
+fi
