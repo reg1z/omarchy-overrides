@@ -4,7 +4,6 @@
 
 USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
 USER_DOTS=$USER_HOME/repos/omarchy-overrides
-OMARCHY=$USER_HOME/.local/share/omarchy
 
 themes=(
   "catppuccin"
@@ -35,7 +34,7 @@ if [[ "$1" == "remove"  ]]; then
   for theme in "${themes[@]}"; do
     for i in 00 01 02 03 04 05 06 07 08 09; do
       if [[ -f $BACKGROUNDS/$i-$theme.png ]]; then
-        rm -v "$OMARCHY/themes/$theme/backgrounds/$i-$theme.png"
+        rm -v "$HOME/.config/omarchy/backgrounds/$theme/$i-$theme.png"
       fi
     done
   done
@@ -44,9 +43,10 @@ if [[ "$1" == "remove"  ]]; then
 else
 
   for theme in "${themes[@]}"; do
+    mkdir -p "$HOME/.config/omarchy/backgrounds/$theme"
     for i in 00 01 02 03 04 05 06 07 08 09; do
       if [[ -f $BACKGROUNDS/$i-$theme.png ]]; then
-        cp -v "$USER_DOTS/backgrounds/$i-$theme.png" "$OMARCHY/themes/$theme/backgrounds/$i-$theme.png"
+        cp -v "$USER_DOTS/backgrounds/$i-$theme.png" "$HOME/.config/omarchy/backgrounds/$theme/$i-$theme.png"
       fi
     done
   done
