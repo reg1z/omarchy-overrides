@@ -7,20 +7,30 @@ CURRENT_SCALE=$(echo "$MONITOR_INFO" | jq -r '.scale')
 
 CURRENT_INT=$(awk -v s="$CURRENT_SCALE" 'BEGIN { printf "%.0f", s * 10 }')
 
-case "$CURRENT_INT" in
-2) NEW_SCALE=0.3 ;;
-3) NEW_SCALE=0.4 ;;
-4) NEW_SCALE=0.5 ;;
-5) NEW_SCALE=0.6 ;;
-6) NEW_SCALE=0.8 ;;
-8) NEW_SCALE=1 ;;
-10) NEW_SCALE=1.2 ;;
-12) NEW_SCALE=1.5 ;;
-15) NEW_SCALE=1.6 ;;
-16) NEW_SCALE=2 ;;
-20) NEW_SCALE=3 ;;
-*) NEW_SCALE=0.8 ;;
-esac
+if [[ "$1" == "in" ]]; then
+  case "$CURRENT_INT" in
+  6) NEW_SCALE=0.8 ;;
+  8) NEW_SCALE=1 ;;
+  10) NEW_SCALE=1.2 ;;
+  12) NEW_SCALE=1.5 ;;
+  16) NEW_SCALE=2 ;;
+  20) NEW_SCALE=3 ;;
+  *) NEW_SCALE=0.8 ;;
+  esac
+elif [[ "$1" == "out" ]]; then
+  case "$CURRENT_INT" in
+  40) NEW_SCALE=3 ;;
+  30) NEW_SCALE=2 ;;
+  20) NEW_SCALE=1.5 ;;
+  15) NEW_SCALE=1.2 ;;
+  12) NEW_SCALE=1 ;;
+  10) NEW_SCALE=0.8 ;;
+  *) NEW_SCALE=3 ;;
+  esac
+else
+  notify-send "󰍹    Error: zoom value not specificed"
+  exit 1
+fi
 
 hyprctl keyword misc:disable_scale_notification true
 hyprctl keyword monitor "$ACTIVE_MONITOR,preferred,auto,$NEW_SCALE"
