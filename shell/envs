@@ -1,0 +1,8 @@
+# environment variables
+
+export PATH="$HOME/.local/bin:$HOME/.cache/.bun/bin:$PATH:$HOME/.cargo/bin:"
+export SSH_AUTH_SOCK=$HOME/.bitwarden-ssh-agent.sock
+
+export DOTS=$HOME/.local/share/omarchy-overrides
+export DOTS_BIN="$HOME/.local/share/omarchy-overrides/scripts/bin"
+export USER_BIN=$HOME/.local/bin

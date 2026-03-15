@@ -3,15 +3,7 @@
 # bash settings
 set -o vi # vi mode
 
-# system envs
-export SSH_AUTH_SOCK=$HOME/.bitwarden-ssh-agent.sock
-export PATH="$HOME/.local/bin:$HOME/.cache/.bun/bin:$PATH:$HOME/.cargo/bin:"
-
-
-# convenience envs
-export DOTS=$HOME/.local/share/omarchy-overrides
-export BINS=$HOME/.local/bin
-
 # sourcing
-source $DOTS/shell/aliases
+source $HOME/.local/share/omarchy-overrides/shell/envs # env vars
+source $DOTS/shell/aliases # aliases
 source $DOTS/shell/fns # functions

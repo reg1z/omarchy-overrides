@@ -1,1 +1,2 @@
-# Shell aliases
+# shell aliases
+alias npx='bunx'
