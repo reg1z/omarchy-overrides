@@ -4,7 +4,7 @@
 USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
 
 # Dotfiles
-USER_DOTS="$USER_HOME/repos/omarchy-overrides"
+USER_DOTS="$USER_HOME/.local/share/omarchy-overrides"
 
 # omarchy-theme-sync
 THEMESYNC_CFG="$USER_HOME/.config/omarchy-theme-sync"

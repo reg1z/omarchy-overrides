@@ -9,7 +9,7 @@ cd ..
 ###                  ###
 
 # Dotfiles
-USER_DOTS="$USER_HOME/repos/omarchy-overrides"
+USER_DOTS="$USER_HOME/.local/share/omarchy-overrides"
 HYPR_DOTS="$USER_DOTS/hypr"
 
 # Local

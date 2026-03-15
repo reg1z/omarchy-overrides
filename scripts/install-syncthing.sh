@@ -8,6 +8,6 @@ yay -Syy
 yay -S --needed --noconfirm syncthing
 
 mkdir -p $USER_HOME/.config/systemd/user
-cp $USER_HOME/repos/omarchy-overrides/syncthing/syncthing.service $USER_HOME/.config/systemd/user
+cp $USER_HOME/.local/share/omarchy-overrides/syncthing/syncthing.service $USER_HOME/.config/systemd/user
 
 systemctl --user enable --now syncthing.service

@@ -10,7 +10,7 @@ export PATH="$HOME/.local/bin:$HOME/.cache/.bun/bin:$PATH:$HOME/.cargo/bin:"
 export $OLLAMA_HOST="127.0.0.1:11434"
 
 # convenience envs
-export DOTS=$HOME/repos/omarchy-overrides
+export DOTS=$HOME/.local/share/omarchy-overrides
 export BINS=$HOME/.local/bin
 
 # sourcing

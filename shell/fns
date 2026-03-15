@@ -1,6 +1,6 @@
 # Relinks custom executables
 linkbin () {
-  local USER_BINS=$HOME/repos/omarchy-overrides/scripts/bin
+  local USER_BINS=$HOME/.local/share/omarchy-overrides/scripts/bin
   local LOCAL_BIN=$HOME/.local/bin
 
   for f in "$USER_BINS"/*; do

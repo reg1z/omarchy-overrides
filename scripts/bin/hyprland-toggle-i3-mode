@@ -11,9 +11,9 @@ if [ "$HYPRGAMEMODE" = 1 ] ; then
 	      keyword decoration:inactive_opacity 1.0;\
 	      keyword decoration:active_opacity 1.0;\
 	      keyword decoration:opacity ;\
-        keyword general:gaps_out 20;\
-        keyword general:gaps_in 10;\
-        keyword general:border_size 8;\
+        keyword general:gaps_out 10;\
+        keyword general:gaps_in 5;\
+        keyword general:border_size 6;\
         keyword decoration:rounding 0;\
         keyword decoration:dim_special 1"
     

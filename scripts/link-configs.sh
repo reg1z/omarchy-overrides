@@ -8,7 +8,7 @@
 USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
 
 # Dotfiles
-USER_DOTS="$USER_HOME/repos/omarchy-overrides"
+USER_DOTS="$USER_HOME/.local/share/omarchy-overrides"
 HYPR_DOTS="$USER_DOTS/hypr"
 HYPR_SCRIPTS="$USER_DOTS/scripts/hyprscripts"
 chmod 755 $HYPR_SCRIPTS/*.sh # Ensure correct perm -vs
@@ -142,8 +142,7 @@ sever() {
   rm -v $HYPR_LOCAL/input.conf
   rm -v $HYPR_LOCAL/bindings.conf
   rm -v $HYPR_LOCAL/bindings-submap-vm-passthru.conf
-  rm -v $HYPR_LOCAL/layout-master.conf
-  rm -v $HYPR_LOCAL/layout-dwindle.conf
+  rm -v $HYPR_LOCAL/layouts.conf
   rm -v $HYPR_LOCAL/monitors.conf
   rm -v $HYPR_LOCAL/windows.conf
   rm -v $HYPR_LOCAL/autostart.conf

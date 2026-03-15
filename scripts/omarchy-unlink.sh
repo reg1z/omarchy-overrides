@@ -5,7 +5,7 @@
 # into the the system directories.
 
 USER_HOME=$(eval echo "~${SUDO_USER:-$USER}")
-USER_DOTS="$USER_HOME/repos/omarchy-overrides"
+USER_DOTS="$USER_HOME/.local/share/omarchy-overrides"
 OMARCHY_BIN="$USER_HOME/.local/share/omarchy/bin"
 
 # Remove Real Conflicting Files
