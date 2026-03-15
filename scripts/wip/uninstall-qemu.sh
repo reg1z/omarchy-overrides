@@ -1,0 +1,83 @@
+#!/bin/bash
+
+# Undo script for install-qemu.sh
+# Reverses all changes made by the QEMU/virt-manager installation
+
+set -euo pipefail
+
+if ! gum confirm "This will remove QEMU, virt-manager, and all related configuration. Proceed?"; then
+  echo "Uninstallation cancelled by user"
+  exit 1
+fi
+
+# Undo NAT network configuration
+if gum confirm "Remove libvirt default network NAT configuration?"; then
+  sudo bash -c '
+    if virsh net-list | grep -q "default.*active"; then
+      virsh net-destroy default || true
+    fi
+    if virsh net-list --all | grep -q "default"; then
+      virsh net-autostart default --disable || true
+    fi
+    rm -f /etc/libvirt/network.conf
+  ' || echo "Could not remove network configuration" >&2
+fi
+
+# Stop and disable libvirtd service
+gum spin --spinner dot --title "Stopping libvirtd service..." -- \
+  sudo systemctl stop libvirtd.service || echo "Could not stop libvirtd service" >&2
+
+gum spin --spinner dot --title "Disabling libvirtd service..." -- \
+  sudo systemctl disable libvirtd.service || echo "Could not disable libvirtd service" >&2
+
+# Revert libvirtd.conf changes (re-comment the lines that were uncommented)
+if [[ -f /etc/libvirt/libvirtd.conf ]]; then
+  gum spin --spinner dot --title "Reverting libvirtd.conf..." -- \
+    sudo bash -c '
+      sed -i "s/^unix_sock_group = \"libvirt\"/#unix_sock_group = \"libvirt\"/" /etc/libvirt/libvirtd.conf
+      sed -i "s/^unix_sock_rw_perms = \"0770\"/#unix_sock_rw_perms = \"0770\"/" /etc/libvirt/libvirtd.conf
+    ' || echo "Could not revert libvirtd.conf" >&2
+fi
+
+# Remove user from libvirt group
+username=$(gum input --placeholder "Enter username to remove from libvirt group (leave blank to skip)")
+if [[ -n "$username" ]]; then
+  gum spin --spinner dot --title "Removing user from libvirt group..." -- \
+    sudo gpasswd -d "$username" libvirt || echo "Could not remove user from libvirt group" >&2
+fi
+
+# Remove optional packages if installed
+if gum confirm "Remove optional packages (edk2-ovmf, bridge-utils) if installed?"; then
+  gum spin --spinner dot --title "Removing optional packages..." -- \
+    sudo pacman -Rns --noconfirm edk2-ovmf bridge-utils 2>/dev/null || \
+    echo "Some optional packages were not installed or could not be removed" >&2
+fi
+
+# Remove core virtualization packages
+if gum confirm "Remove core virtualization packages (qemu-full, libvirt, virt-manager, etc.)?"; then
+  gum spin --spinner dot --title "Removing core packages..." -- \
+    sudo pacman -Rns --noconfirm \
+      qemu-full \
+      libvirt \
+      virt-manager \
+      virt-viewer \
+      dnsmasq \
+      openbsd-netcat 2>/dev/null || \
+    echo "Some packages were not installed or could not be removed" >&2
+fi
+
+# Handle iptables-nft separately
+if gum confirm "Remove iptables-nft?"; then
+  if gum confirm "Replace iptables-nft with the regular iptables package?"; then
+    gum spin --spinner dot --title "Switching to iptables..." -- \
+      sudo pacman -S --noconfirm iptables || echo "Could not install iptables" >&2
+  else
+    gum spin --spinner dot --title "Removing iptables-nft..." -- \
+      sudo pacman -Rns --noconfirm iptables-nft 2>/dev/null || \
+      echo "Could not remove iptables-nft" >&2
+  fi
+fi
+
+echo "QEMU and virt-manager uninstallation completed."
+echo "Note: You may need to log out and back in for group changes to take effect."
+echo -e "END: uninstall-qemu.sh"
