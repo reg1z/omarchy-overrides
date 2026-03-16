@@ -1,0 +1,29 @@
+#!/bin/bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+  echo "Usage: qcow2tarball <image.qcow2>"
+  exit 1
+fi
+
+INPUT="$1"
+
+if [[ ! -f "$INPUT" ]]; then
+  echo "Error: file not found: $INPUT"
+  exit 1
+fi
+
+BASE="$(basename "$INPUT" .qcow2)"
+RAW="disk.raw"
+TARBALL="${BASE}.tar.gz"
+
+echo "[*] Converting qcow2 → raw..."
+qemu-img convert -f qcow2 -O raw "$INPUT" "$RAW"
+
+echo "[*] Creating tarball..."
+tar -czf "$TARBALL" "$RAW"
+
+echo "[*] Cleaning up raw disk..."
+rm -f "$RAW"
+
+echo "[+] Done: $TARBALL"
