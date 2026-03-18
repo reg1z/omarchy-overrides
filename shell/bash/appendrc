@@ -7,3 +7,4 @@ set -o vi # vi mode
 source $HOME/.local/share/omarchy-overrides/shell/envs # env vars
 source $DOTS/shell/aliases # aliases
 source $DOTS/shell/fns # functions
+
