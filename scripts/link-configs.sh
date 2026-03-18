@@ -22,6 +22,10 @@ mkdir -p $HYPR_LOCAL_SCRIPTS # Ensure existence
 TMUX_CFG="$USER_HOME/.config/tmux"
 mkdir -p $TMUX_CFG
 
+# ghostty
+GHOSTTY_CFG="$USER_HOME/.config/ghostty"
+mkdir -p $GHOSTTY_CFG
+
 # fcitx5
 FCITX5_CFG="$USER_HOME/.config/fcitx5/conf"
 mkdir -p $FCITX5_CFG
@@ -59,6 +63,8 @@ backup() {
   cp -v $TMUX_CFG/tmux.conf $TMUX_CFG/tmux.conf.bak # tmux
   cp -v $FCITX5_CFG/spell.conf $FCITX5_CFG/spell.conf.bak # fcitx5
   cp -v $WAYBAR_CFG/config.jsonc $WAYBAR_CFG/config.jsonc.bak # waybar
+
+  cp -v $GHOSTTY_CFG/config $GHOSTTY_CFG/config.bak # ghostty
 }
 
 restore() {
@@ -71,6 +77,7 @@ restore() {
   mv -v $TMUX_CFG/tmux.conf.bak $TMUX_CFG/tmux.conf # tmux
   mv -v $FCITX5_CFG/spell.conf.bak $FCITX5_CFG/spell.conf # fcitx5
   mv -v $WAYBAR_CFG/config.jsonc.bak $WAYBAR_CFG/config.jsonc # waybar
+  mv -v $GHOSTTY_CFG/config.bak $GHOSTTY_CFG/config # ghostty
   echo -e "\nBackups restored!"
 }
 
@@ -95,6 +102,9 @@ link() {
 
   # Waybar
 	ln -s -v $USER_DOTS/waybar/config.jsonc $WAYBAR_CFG/config.jsonc
+
+  # ghostty
+  ln -s -v $USER_DOTS/ghostty/config $GHOSTTY_CFG/config
 
   #####################################
   ### EXEMPT FROM SEVERING & BACKUP ###
@@ -157,6 +167,9 @@ sever() {
 
   # Waybar
   rm -v $WAYBAR_CFG/config.jsonc
+
+  # ghostty
+  rm -v $GHOSTTY_CFG/config
 
   echo -e "\nLinks severed!"
   sleep 5
